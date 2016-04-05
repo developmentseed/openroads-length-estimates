@@ -14,15 +14,6 @@ _(dpwhEstimates).forEach((o, i) => {
   });
 });
 
-var osmLengths = [];
-_(osmEstimates).forEach((o, i) => {
-  osmLengths.push({
-    id: Number(i),
-    value: o.totalLength,
-    measure: 'full-osm'
-  });
-});
-
 // Local lengths are calculated by subtracting DPWH estimates
 // from the OSM estimates
 var localLengths = [];
@@ -35,7 +26,6 @@ _(osmEstimates).forEach((o, i) => {
 });
 
 const finalLengths = dpwhLengths
-  .concat(osmLengths)
   .concat(localLengths);
 
 fs.writeFile('./data/length-estimates.json', JSON.stringify(_.sortBy(finalLengths, 'id')));

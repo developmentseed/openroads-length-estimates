@@ -8,18 +8,9 @@ var dpwhEstimates = require('./data/dpwh-lengths.json');
 var dpwhLengths = [];
 _(dpwhEstimates).forEach((o, i) => {
   dpwhLengths.push({
-    id: i,
+    id: Number(i),
     value: o.totalLength,
     measure: 'national'
-  });
-});
-
-var osmLengths = [];
-_(osmEstimates).forEach((o, i) => {
-  osmLengths.push({
-    id: i,
-    value: o.totalLength,
-    measure: 'full-osm'
   });
 });
 
@@ -28,14 +19,13 @@ _(osmEstimates).forEach((o, i) => {
 var localLengths = [];
 _(osmEstimates).forEach((o, i) => {
   localLengths.push({
-    id: i,
+    id: Number(i),
     value: o.totalLength - dpwhEstimates[i].totalLength,
     measure: 'local'
   });
 });
 
 const finalLengths = dpwhLengths
-  .concat(osmLengths)
   .concat(localLengths);
 
 fs.writeFile('./data/length-estimates.json', JSON.stringify(_.sortBy(finalLengths, 'id')));

@@ -18,9 +18,10 @@ _(dpwhEstimates).forEach((o, i) => {
 // from the OSM estimates
 var localLengths = [];
 _(osmEstimates).forEach((o, i) => {
+  let e = o.totalLength - dpwhEstimates[i].totalLength;
   localLengths.push({
     id: Number(i),
-    value: o.totalLength - dpwhEstimates[i].totalLength,
+    value: e < 0 ? 0 : e,
     measure: 'local'
   });
 });

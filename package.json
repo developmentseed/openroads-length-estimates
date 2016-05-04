@@ -13,9 +13,10 @@
   "license": "BSD-2-Clause",
   "scripts": {
     "lint": "eslint tool",
-    "calculate-length": "node get-stats.js"
+    "start": "node index.js"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "lodash": "^4.7.0",
     "path": "^0.12.7",
     "tile-reduce": "^3.1.0",

@@ -3,6 +3,15 @@ Calculates road estimates for the Philippines for use in OpenRoads. The script u
 
 The polygons with administrative boundaries that this project uses to clip the road network, are stored in the [OpenRoads Boundaries repo](https://github.com/opengovt/openroads-boundaries).
 
+## How to use
+Run `npm install` if it is the first time you run the script. To calculate the OSM and DPWH lengths, run:
+
+```
+npm start
+```
+
+By default, this script will spin up 2 workers to perform the calculations. Depending on the amount of cores available, you may want to increase the amount of workers in `lib/get-stats.js`.
+
 ## Methodology
 The final estimates are stored in a JSON file with the following structure:
 
@@ -27,7 +36,7 @@ The final estimates are stored in a JSON file with the following structure:
 ### national
 The national road estimates are calculated from the DPWH shapefile `Surface Type.shp`. It sums up the lengths of all the roads in a given administrative area.
 
-### full-osm
+### local
 These estimates are calculated from the Philippine country extract on [OMS QA tiles](https://osmlab.github.io/osm-qa-tiles/country.html). It sums up all the linestrings that are tagged with a `highway` tag.
 
 ### local
